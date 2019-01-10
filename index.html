@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/10/爬虫总结/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/10/Linux-Basic-Command/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AlanYe">
@@ -251,7 +251,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/10/爬虫总结/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2019/01/10/Linux-Basic-Command/" itemprop="url">Linux Basic Command</a></h1>
         
 
         <div class="post-meta">
@@ -263,7 +263,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-10T19:15:21+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-10T19:20:01+08:00">
                 2019-01-10
               </time>
             
@@ -303,9 +303,231 @@
       
         
           
-            <p>爬虫总结.md</p>
-<h1 id="验证码的识别"><a href="#验证码的识别" class="headerlink" title="验证码的识别"></a>验证码的识别</h1><p>- </p>
+            <h1 id="Linux-command-line-md"><a href="#Linux-command-line-md" class="headerlink" title="Linux command line.md"></a>Linux command line.md</h1><ul>
+<li><p>ls</p>
+</li>
+<li><p>ln 源文件 链接文件 （硬链接）</p>
+</li>
+<li><p>ln -s 源文件 链接文件 （软链接）</p>
+</li>
+<li><p>|   管道</p>
+</li>
+<li><p>touch 创建文件</p>
+</li>
+<li><p>touch a{1..9}.py 创建多个文件</p>
+</li>
+<li><p>mkdir 创建文件夹 </p>
+</li>
+<li><p>mkdir ./a/b/c/d -p 循环创建多个文件夹</p>
+</li>
+<li><p>more 分屏显示</p>
+</li>
+<li><blockquote>
+<p>输出重定向 </p>
+</blockquote>
+</li>
+<li><blockquote>
+<blockquote>
+<p>追加重定向</p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>ls &gt; test.txt 如果test.txt  不存在，则创建。存在则覆盖。  </p>
+</li>
+<li><p>gedit 编辑文件</p>
+</li>
+<li><p>ls -ln 查看链接数量</p>
+</li>
+</ul>
+<h2 id="注意区分硬链接和软连接的区别："><a href="#注意区分硬链接和软连接的区别：" class="headerlink" title="注意区分硬链接和软连接的区别："></a>注意区分硬链接和软连接的区别：</h2><p>硬链接相当于重新再内存中备份一个文件，占用内存。<br>软连接不占用内存，只是引用。<br>区别: </p>
+<ol>
+<li>源文件删除以后，软连接内容丢失。硬链接内容仍然存在。硬链接内容修改一次，所有的硬链接和软连接内容一起呗修改。<br>软链接里修改内容相当于修改了源文件的内容。</li>
+<li>硬链接是同一个文件内容，但是有多个文件名。</li>
+</ol>
+<p>cat 将两个文件的内容重定向到一个文件中显示。<br>cat 文件1 文件2 &gt; 文件3</p>
+<h2 id="grep-搜索"><a href="#grep-搜索" class="headerlink" title="grep 搜索"></a>grep 搜索</h2><p>grep ‘a’ 1.txt<br>grep -inv ‘^a’ 1.txt<br>i  忽略大小写，n 显示匹配行以及行号， -v 取反</p>
+<h2 id="find-命令"><a href="#find-命令" class="headerlink" title="find 命令"></a>find 命令</h2><ul>
+<li>查找当前目录下 大于4k小于 5 M 的文件<br>find ./ -size +4k -size -5M </li>
+<li>查找当前目录下所有名为 test.s 文件<br>find ./ -name test.s</li>
+<li>查找当前目录下所有名为 .py 文件<br>find ./ -name ‘*.py’</li>
+<li>查找当前目录下权限为777的文件或者目录<br>find ./ -perm 777<br>归档管理： tar （tar只负责打包不负责压缩，压缩要用gzip）</li>
+<li>生成归档文件，创建打包文件。</li>
+</ul>
+<ol>
+<li>tar -c 文件名</li>
+</ol>
+<ul>
+<li>列出归档解档的详细过程，显示进度。<br>tar -v 要压缩文件名 -f 压缩成的文件名<br>tar -cvf 文件名.tar </li>
+<li>gzip 文件压缩解压<br>gzip -d 待解压文件   / 解压文件<br>gzip -r 压缩所有子目录  / 压缩文件</li>
+<li>打包压缩一起<br>tar -zcvf test.tar.gz * </li>
+<li>解压方法有所变化，解铃还须系铃人。<br>tar -zxvf test.tar.gz</li>
+<li>解压到指定的目录 -C  后面加 指定的文件夹（大写字母C）<br>tar -zxvf test.tar.gz -C ./c </li>
+<li>文件压缩解压: bzip2<br>压缩用法：tar -jcvf 压缩包包名 文件 (tar jcvf bk.tar.bz2 *.c)<br>解压用法： tar -jxvf 压缩包包名 （tar jxvf bk.tar.bz2）</li>
+</ul>
+<h3 id="zip方法"><a href="#zip方法" class="headerlink" title="zip方法"></a>zip方法</h3><p>压缩文件： 1. zip -r  目标文件 源文件 2. zip 文件名 * ： 压缩当前所有文件<br>解压文件： unzip -d 解压后的目录 压缩文件</p>
+<h2 id="查看命令位置"><a href="#查看命令位置" class="headerlink" title="查看命令位置"></a>查看命令位置</h2><p>which ls</p>
+<h2 id="修改文件权限"><a href="#修改文件权限" class="headerlink" title="修改文件权限"></a>修改文件权限</h2><p>chmod u/g/o/a +/-/ = rwx 文件<br>u - user 表示该文件的所有者<br>g - group 表示与该文件的所有者的属于同一组（group）者，即用户组。<br>o - other 表示其他以外的人<br>a - 表示这三者都是。</p>
+<ul>
+<li>增加权限</li>
+</ul>
+<ul>
+<li>撤销权限<br>= 设定权限<br>r : read 表示可读取，对于一个目录如果没有r权限，则不能通过ls 查看这个目录的内容。<br>w : write 表示可写入，对于一个目录，如果没有w 权限,那么就意味着不能再目录下创建新的文件。<br>x : excute 表示可执行，对于一个目录，如果没有x 权限，那么就意味着不能通过cd 进入这个目录。</li>
+</ul>
+<p>数字法： rwx 这些权限也可以用数字来代替。<br>r :4, w:2, x :1, - 0(不具备任何权限)<br>7 : rwx 4+2+1 读写执行权限。</p>
+<p>注意：如果想递归所有目录加上相同权限，需要加上参数“ -R ”。 如：chmod 777 test/ -R 递归 test 目录下所有文件加 777 权限</p>
+<h2 id="切换到管理员账号："><a href="#切换到管理员账号：" class="headerlink" title="切换到管理员账号："></a>切换到管理员账号：</h2><p>Ubuntu<br>whoami 查看当前用户<br>sudo -s: 切换到root</p>
+<h2 id="设置用户密码"><a href="#设置用户密码" class="headerlink" title="设置用户密码"></a>设置用户密码</h2><p>sudo  passwd 用户</p>
+<h2 id="退出登录账户：-exit"><a href="#退出登录账户：-exit" class="headerlink" title="退出登录账户： exit"></a>退出登录账户： exit</h2><ul>
+<li>如果是图形界面，退出当前终端；</li>
+<li>如果是使用ssh远程登录，退出登陆账户；</li>
+<li>如果是切换后的登陆用户，退出则返回上一个登陆账号。 </li>
+</ul>
+<p>who 命令用于查看当前所有登录系统的用户信息。<br>-q 或 –count 只显示用户的登录账号和登录用户的数量。<br>-u 或者 –heading 显示列表题。</p>
+<h2 id="关机重启"><a href="#关机重启" class="headerlink" title="关机重启"></a>关机重启</h2><p>reboot  重启<br>shutdown -r now 重新启动，shutdowm 会给用户提示。<br>shutdowm -h now 立刻关机，其中now 相当于时间为零的，立刻关机<br>shutdown -h 20:00<br>shutdown -h +10 10分钟后关机</p>
+<h2 id="软件安装和更新镜像源"><a href="#软件安装和更新镜像源" class="headerlink" title="软件安装和更新镜像源"></a>软件安装和更新镜像源</h2><p>sudo apt-get update  更新源</p>
+<p>sudo apt-get install package 安装包</p>
+<p>sudo apt-get remove package 删除包</p>
+<p>sudo apt-cache search package 搜索软件包</p>
+<p>sudo apt-cache show package  获取包的相关信息，如说明、大小、版本等</p>
+<p>sudo apt-get install package –reinstall   重新安装包</p>
+<p>sudo apt-get -f install   修复安装</p>
+<p>sudo apt-get remove package –purge 删除包，包括配置文件等</p>
+<p>sudo apt-get build-dep package 安装相关的编译环境</p>
+<p>sudo apt-get upgrade 更新已安装的包</p>
+<p>sudo apt-get dist-upgrade 升级系统</p>
+<p>sudo apt-cache depends package 了解使用该包依赖那些包</p>
+<p>sudo apt-cache rdepends package 查看该包被哪些包依赖</p>
+<p>sudo apt-get source package  下载该包的源代码</p>
+<p>sudo apt-get clean &amp;&amp; sudo apt-get autoclean 清理无用的包</p>
+<p>sudo apt-get check 检查是否有损坏的依赖</p>
+<h2 id="Mac-如何启动-ssh"><a href="#Mac-如何启动-ssh" class="headerlink" title="Mac 如何启动 ssh?"></a>Mac 如何启动 ssh?</h2><p>mac本身安装了ssh服务，默认情况下不会开机自启</p>
+<p>1.启动sshd服务：<br>sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist</p>
+<p>2.停止sshd服务：<br>sudo launchctl unload -w /System/Library/LaunchDaemons/ssh.plist</p>
+<p>3查看是否启动：<br>sudo launchctl list | grep ssh</p>
+<p>如果看到下面的输出表示成功启动了：<br>－－－－－－－－－－－－－－</p>
+<ul>
+<li>0 com.openssh.sshd</li>
+</ul>
 
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/10/Command/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AlanYe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="If you have a dream, Please go head!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/10/Command/" itemprop="url">Command</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-10T19:19:26+08:00">
+                2019-01-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
           
         
       
@@ -1140,7 +1362,7 @@ drop table xxxxx;
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
