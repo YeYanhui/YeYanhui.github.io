@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Mongodb 使用 db查看当前的数据库  show dbs /show databases查看当前所有数据库 use db切换数据库 db.dropDatabase()删除当前的数据库   集合的基础命令db.createCollection(name,options)db.createCollection(“stu”)db.createCollection(“sub”,{capped:tru">
+<meta name="description" content="什么是闭包？闭包有什么用？  闭包就是一个函数，闭包能够创立一个单独的空间供函数方便使用变量以及参数。   什么是装饰器？装饰器有什么用？装饰器的实现原理。  1.装饰器本质上是一个Python函数，它可以让其他函数在不需要做任何代码变动的前提下增加额外功能，装饰器的返回值也是一个函数对象。它经常用于有切面需求的场景，比如：插入日志、性能测试、事务处理、缓存、权限校验等场景。装饰器是解决这类问题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MongoDB基本操作">
-<meta property="og:url" content="http://yoursite.com/2019/01/06/MongoDB基本操作/index.html">
+<meta property="og:title" content="Python的装饰器">
+<meta property="og:url" content="http://yoursite.com/2019/01/25/Python装饰器/index.html">
 <meta property="og:site_name" content="If you have a dream, Please go head!">
-<meta property="og:description" content="Mongodb 使用 db查看当前的数据库  show dbs /show databases查看当前所有数据库 use db切换数据库 db.dropDatabase()删除当前的数据库   集合的基础命令db.createCollection(name,options)db.createCollection(“stu”)db.createCollection(“sub”,{capped:tru">
+<meta property="og:description" content="什么是闭包？闭包有什么用？  闭包就是一个函数，闭包能够创立一个单独的空间供函数方便使用变量以及参数。   什么是装饰器？装饰器有什么用？装饰器的实现原理。  1.装饰器本质上是一个Python函数，它可以让其他函数在不需要做任何代码变动的前提下增加额外功能，装饰器的返回值也是一个函数对象。它经常用于有切面需求的场景，比如：插入日志、性能测试、事务处理、缓存、权限校验等场景。装饰器是解决这类问题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-06T03:10:22.422Z">
+<meta property="og:updated_time" content="2019-01-29T14:45:18.615Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MongoDB基本操作">
-<meta name="twitter:description" content="Mongodb 使用 db查看当前的数据库  show dbs /show databases查看当前所有数据库 use db切换数据库 db.dropDatabase()删除当前的数据库   集合的基础命令db.createCollection(name,options)db.createCollection(“stu”)db.createCollection(“sub”,{capped:tru">
+<meta name="twitter:title" content="Python的装饰器">
+<meta name="twitter:description" content="什么是闭包？闭包有什么用？  闭包就是一个函数，闭包能够创立一个单独的空间供函数方便使用变量以及参数。   什么是装饰器？装饰器有什么用？装饰器的实现原理。  1.装饰器本质上是一个Python函数，它可以让其他函数在不需要做任何代码变动的前提下增加额外功能，装饰器的返回值也是一个函数对象。它经常用于有切面需求的场景，比如：插入日志、性能测试、事务处理、缓存、权限校验等场景。装饰器是解决这类问题">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/06/MongoDB基本操作/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/25/Python装饰器/">
 
 
 
 
 
-  <title>MongoDB基本操作 | If you have a dream, Please go head!</title>
+  <title>Python的装饰器 | If you have a dream, Please go head!</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/06/MongoDB基本操作/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/25/Python装饰器/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AlanYe">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MongoDB基本操作</h1>
+          <h1 class="post-title" itemprop="name headline">Python的装饰器</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-06T11:09:57+08:00">
-                2019-01-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-25T18:45:22+08:00">
+                2019-01-25
               </time>
             
 
@@ -299,40 +299,53 @@
       
 
       
-        <h1 id="Mongodb-使用"><a href="#Mongodb-使用" class="headerlink" title="Mongodb 使用"></a>Mongodb 使用</h1><ul>
-<li>db<br>查看当前的数据库 </li>
-<li>show dbs /show databases<br>查看当前所有数据库</li>
-<li>use db<br>切换数据库</li>
-<li>db.dropDatabase()<br>删除当前的数据库 </li>
-</ul>
-<h2 id="集合的基础命令"><a href="#集合的基础命令" class="headerlink" title="集合的基础命令"></a>集合的基础命令</h2><p>db.createCollection(name,options)<br>db.createCollection(“stu”)<br>db.createCollection(“sub”,{capped:true, size:10})<br>capped:为true时，指定上限大小，当文档达到上限时，会将之前的数据覆盖，单位为字节。<br>查看集合： show collections;<br>删除集合： db.集合名称.drop()</p>
-<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>Object ID: 文档ID<br>String： 字符串，必须是有效的 utf-8<br>Boolean: 存储一个布尔值， true， 或false<br>Integer ： 整数可以是32位，或者64位，这取决于服务器。<br>Double:浮点值<br>Arrays： 数组列表<br>Object： 用于嵌入式文档，一个值为一个文档。<br>Null： 存储Null值<br>Timestamp: 时间戳， 总秒数。<br>Date： 存储当前日期或时间的Unix的时间格式。</p>
-<h1 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h1><h2 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h2><p>小于 $lt (less than)<br>小于等于： $lte (less than equal)<br>大于 ： $gt (greater than)<br>大于等于： $gte<br>不等于： $ne</p>
-<p>db.stu.find({age:{$get:18}}) </p>
-<p>$or 或<br>查询命令：<br>db.stu.find({$or:[{age:18},{hometown:”桃花岛”}]})<br>db.stu.find({$or:[{age:{$gte:20}},{hometown:{$in:[“桃花岛”,”华山”]}}]})<br>db.stu.find({$where:function(){return this.age &lt;= 18})</p>
-<h1 id="投影"><a href="#投影" class="headerlink" title="投影"></a>投影</h1><p>在查询到的返回结果中，只选择必要的字段。<br>db.集合名称.find{} {字段名称：1，…}<br>参数为字段与值，值为1表示显示，如果不显示需要明确设置为0</p>
-<p>db.stu.find({}.{——id:0,name:1,gender:1})</p>
-<h2 id="数据备份"><a href="#数据备份" class="headerlink" title="数据备份"></a>数据备份</h2><p>mongodump -h dbhost -d dbname -o dbdirectory</p>
-<p>-h: 服务器地址，也可以指定端口号<br>-d:需要备份的数据库名称<br>-o:备份的数据存放位置，此目录中存放着备份出来的数据。</p>
-<p>mongodump -h 192.168.196.128:27017 -d test1 -o     ~/Desktop/test1/bak</p>
-<h2 id="数据的恢复"><a href="#数据的恢复" class="headerlink" title="数据的恢复"></a>数据的恢复</h2><p>mongorestore -h dbhost -d dbname –dir dbdirectory<br>-h: 服务器地址<br>-d: 需要恢复的数据库实例<br>–dir: 北非数据所在位置</p>
-<p>mongorestore -h  192.168.196.128:27017 -d test1 -o ~/Desktop/test1/bak</p>
-<h2 id="聚合-aggregate-管道"><a href="#聚合-aggregate-管道" class="headerlink" title="聚合 aggregate 管道"></a>聚合 aggregate 管道</h2><p>每个文档通过一个由多个阶段组成的管道，可以对每个阶段的管道进行分组、过滤等功能，然后经过一系列的处理，输出相应的结果。<br>db.集合名称.aggregate({管道：{表达式}})</p>
-<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><p>$ group: 将集合中的文档分组，用于统计结果<br>$project ：修改输入文档的结构，如重命名，增加，删除字段，创建计算结果。<br>$ sort: 将输入文档排序后输出<br>$ skip: 跳过指定数量的文档，并返回余下的文档<br>$ unwind: 将数组类型的字段进行拆分</p>
-<p>db.stu.aggregate(<br>{$group:{_id:”$gender”}}<br>)<br>db.sut.aggregate({$group:{_id:null,count:{$sum:1},mean_age:{$avg:”$age”}}})</p>
-<p>db.stu.aggregate({$group:{_id:null,count:{$sum:1},mean_age:{$avg:”$age”}}},<br>{$progect:{gender:”$_id”}})</p>
-<h4 id="选择年龄大于20-的学生"><a href="#选择年龄大于20-的学生" class="headerlink" title="选择年龄大于20 的学生"></a>选择年龄大于20 的学生</h4><p>$match<br>db.stu.aggregate(<br>{$match:{age:{$gt:20}}},<br>{$group:{_id:”$gender”,count:{$sum:1}}},<br>{$progect:{_id:0,gender:”$_id”,count:1}}<br>)</p>
-<p>db.stu.aggregate(<br>    {$match:{$or:[{age:{$gt:20}},{hometown:{$in:[“蒙古”,”大理”]}}]}},<br>    {$group:{_id:”gender”,count:{$sum:1}}},<br>    {$project:{_id:0,gender:”$_id,count:1”}}<br>）</p>
-<p>db.t2.aggregate({$match:{username:”Alex”}},{$unwind:”$tags”})</p>
-<p>db.t2.aggregate({$unwind:{path:”$size”,preserveNullAndEmptyArrays:true}})</p>
-<h2 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h2><p>for(i=0;i&lt;1000000;i++){db.t255.insert({name:’test’+i,age:i})}<br> db.t255.ensureIndex({name:1})<br>获取当前索引值<br> db.t255.getIndexes()<br>创建唯一索引（索引的值是唯一的）<br>db.t1.ensureIndex({“name”:1},{“unique”:true})<br>建立联合索引<br>db.t1.ensureIndex({name:1,age:1})<br>查看当前集合的所有索引：<br>db.t1.getIndexes()<br>删除索引<br>db.t1.dropIndex(“索引名称”)</p>
+        <ol>
+<li><p>什么是闭包？闭包有什么用？</p>
 <ul>
-<li>布隆过滤器</li>
-<li>使用多个加密算法加密URL地址，得到多个值</li>
-<li>往对应指定的位置把结果设置为1</li>
-<li>新来的一个URL地址，一样通过加密算法生成多个值</li>
-<li>如果对应位置的值全为1，说明这个URL地址已经抓过</li>
-<li>否则没有抓过，就把对应位置的值设置为1</li>
+<li>闭包就是一个函数，闭包能够创立一个单独的空间供函数方便使用变量以及参数。</li>
+</ul>
+</li>
+<li><p>什么是装饰器？装饰器有什么用？装饰器的实现原理。</p>
+<ul>
+<li><p>1.装饰器本质上是一个Python函数，它可以让其他函数在不需要做任何代码变动的前提下增加额外功能，装饰器的返回值也是一个函数对象。它经常用于有切面需求的场景，比如：插入日志、性能测试、事务处理、缓存、权限校验等场景。装饰器是解决这类问题的绝佳设计，有了装饰器，我们就可以抽离出大量与函数功能本身无关的雷同代码并继续重用。</p>
+</li>
+<li><p>2.在已经写好的函数之前进行一些操作，在不修改已经写好的函数的情况下，用装饰器实现一些原函数以外的功能。</p>
+</li>
+<li><p>3.修改原函数的引用（指向，让装饰器指向原函数。）实现先执行装饰器，后执行原函数的目的。</p>
+</li>
+<li><p>多个装饰器对一个函数装饰的过程：比如</p>
+<p>@set_func1</p>
+<p>@set_func2</p>
+<p>@set_func3</p>
+<p>def xxx(a, b, c):</p>
+<p>​    pass</p>
+<p>@ set_func1 往下装饰发现@ set_func2不是一个函数，无法满足要求，所以@ set_func1,无法进行，就继续向下走，@ set_func2同理，无法进行装饰，@ set_func3 下面满足是一个函数，可以装饰，然后实际情况就是 先装@ set_func3，后装@ set_func2，最后装饰@ set_func1.倒着装饰。调用过程和装饰过程正好相反，先调用@ set_func1，后调用@ set_func2，最好调用@ set_func3.</p>
+</li>
+</ul>
+<p>3.带有参数的装饰器的原理</p>
+<ul>
+<li>源码： </li>
+<li>@set_func(1)</li>
+<li>def test1():<ul>
+<li>pass</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>调用set_func并且将1当做实参传递，</li>
+<li>用上一步调用的返回值，当做装饰器对test1函数进行装饰。</li>
+</ol>
+<p>​</p>
+</li>
+</ol>
+<h4 id="带参数的装饰器代码解析："><a href="#带参数的装饰器代码解析：" class="headerlink" title="带参数的装饰器代码解析："></a>带参数的装饰器代码解析：</h4><p>def set_level(level_num):<br>    def set_func(func):<br>        def call_func(*args, **kwargs):<br>            if level_num == 1:<br>                print(“—权限验证级别1—“)<br>            elif level_num == 2:<br>                print(“—权限验证级别2—“)<br>            return func()<br>        return call_func<br>    return set_func</p>
+<p>@set_level(1)<br>def test1():<br>    print(“——-test1———“)<br>    print(“hello”)</p>
+<p>@set_level(2)<br>def test2():<br>    print(“——-test2———“)<br>    print(“hello”)</p>
+<p>-从test(1) —&gt; test() 改进到自己不带参数</p>
+<p>test1()<br>test2()</p>
+<p>解析： set_level 函数的目的是保存一个参数，level_num,供下面的装饰器来使用，最后一行return set_func 这行返回了set_func 的引用，1.调用完set_level函数以后，2.开始调用set_func函数，也就是调用装饰器，调用装饰器的过程不用多赘述和平时调用是一样的。</p>
+<h4 id="路由："><a href="#路由：" class="headerlink" title="路由："></a>路由：</h4><ul>
+<li>根据URL不一样，寻找的路径不一样。</li>
 </ul>
 
       
@@ -358,8 +371,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/06/Mysql-basic-operation/" rel="next" title="Mysql basic operation">
-                <i class="fa fa-chevron-left"></i> Mysql basic operation
+              <a href="/2019/01/14/浏览器重点/" rel="next" title="浏览器重点">
+                <i class="fa fa-chevron-left"></i> 浏览器重点
               </a>
             
           </div>
@@ -368,8 +381,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/10/Command/" rel="prev" title="Command">
-                Command <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/29/Python-写的-mini-web-服务器/" rel="prev" title="Python 写的 mini_web 服务器">
+                Python 写的 mini_web 服务器 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -484,7 +497,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mongodb-使用"><span class="nav-number">1.</span> <span class="nav-text">Mongodb 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#集合的基础命令"><span class="nav-number">1.1.</span> <span class="nav-text">集合的基础命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">1.2.</span> <span class="nav-text">数据类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查询"><span class="nav-number">2.</span> <span class="nav-text">查询</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#比较运算符"><span class="nav-number">2.1.</span> <span class="nav-text">比较运算符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#投影"><span class="nav-number">3.</span> <span class="nav-text">投影</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据备份"><span class="nav-number">3.1.</span> <span class="nav-text">数据备份</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据的恢复"><span class="nav-number">3.2.</span> <span class="nav-text">数据的恢复</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚合-aggregate-管道"><span class="nav-number">3.3.</span> <span class="nav-text">聚合 aggregate 管道</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令"><span class="nav-number">3.3.1.</span> <span class="nav-text">命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#选择年龄大于20-的学生"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">选择年龄大于20 的学生</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建索引"><span class="nav-number">3.4.</span> <span class="nav-text">创建索引</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#带参数的装饰器代码解析："><span class="nav-number">1.</span> <span class="nav-text">带参数的装饰器代码解析：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#路由："><span class="nav-number">2.</span> <span class="nav-text">路由：</span></a></li></ol></div>
             
 
           </div>
