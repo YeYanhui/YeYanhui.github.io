@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/Python-写的-mini-web-服务器/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/25/Python-写的-mini-web-服务器/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AlanYe">
@@ -251,7 +251,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/29/Python-写的-mini-web-服务器/" itemprop="url">Python 写的 mini_web 服务器</a></h1>
+                <a class="post-title-link" href="/2019/01/25/Python-写的-mini-web-服务器/" itemprop="url">Python的装饰器</a></h1>
         
 
         <div class="post-meta">
@@ -263,8 +263,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-29T22:47:18+08:00">
-                2019-01-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-25T18:45:22+08:00">
+                2019-01-25
               </time>
             
 
@@ -303,7 +303,55 @@
       
         
           
-            
+            <ol>
+<li><p>什么是闭包？闭包有什么用？</p>
+<ul>
+<li>闭包就是一个函数，闭包能够创立一个单独的空间供函数方便使用变量以及参数。</li>
+</ul>
+</li>
+<li><p>什么是装饰器？装饰器有什么用？装饰器的实现原理。</p>
+<ul>
+<li><p>1.装饰器本质上是一个Python函数，它可以让其他函数在不需要做任何代码变动的前提下增加额外功能，装饰器的返回值也是一个函数对象。它经常用于有切面需求的场景，比如：插入日志、性能测试、事务处理、缓存、权限校验等场景。装饰器是解决这类问题的绝佳设计，有了装饰器，我们就可以抽离出大量与函数功能本身无关的雷同代码并继续重用。</p>
+</li>
+<li><p>2.在已经写好的函数之前进行一些操作，在不修改已经写好的函数的情况下，用装饰器实现一些原函数以外的功能。</p>
+</li>
+<li><p>3.修改原函数的引用（指向，让装饰器指向原函数。）实现先执行装饰器，后执行原函数的目的。</p>
+</li>
+<li><p>多个装饰器对一个函数装饰的过程：比如</p>
+<p>@set_func1</p>
+<p>@set_func2</p>
+<p>@set_func3</p>
+<p>def xxx(a, b, c):</p>
+<p>​    pass</p>
+<p>@ set_func1 往下装饰发现@ set_func2不是一个函数，无法满足要求，所以@ set_func1,无法进行，就继续向下走，@ set_func2同理，无法进行装饰，@ set_func3 下面满足是一个函数，可以装饰，然后实际情况就是 先装@ set_func3，后装@ set_func2，最后装饰@ set_func1.倒着装饰。调用过程和装饰过程正好相反，先调用@ set_func1，后调用@ set_func2，最好调用@ set_func3.</p>
+</li>
+</ul>
+<p>3.带有参数的装饰器的原理</p>
+<ul>
+<li>源码： </li>
+<li>@set_func(1)</li>
+<li>def test1():<ul>
+<li>pass</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>调用set_func并且将1当做实参传递，</li>
+<li>用上一步调用的返回值，当做装饰器对test1函数进行装饰。</li>
+</ol>
+<p>​</p>
+</li>
+</ol>
+<h4 id="带参数的装饰器代码解析："><a href="#带参数的装饰器代码解析：" class="headerlink" title="带参数的装饰器代码解析："></a>带参数的装饰器代码解析：</h4><p>def set_level(level_num):<br>    def set_func(func):<br>        def call_func(*args, **kwargs):<br>            if level_num == 1:<br>                print(“—权限验证级别1—“)<br>            elif level_num == 2:<br>                print(“—权限验证级别2—“)<br>            return func()<br>        return call_func<br>    return set_func</p>
+<p>@set_level(1)<br>def test1():<br>    print(“——-test1———“)<br>    print(“hello”)</p>
+<p>@set_level(2)<br>def test2():<br>    print(“——-test2———“)<br>    print(“hello”)</p>
+<p>-从test(1) —&gt; test() 改进到自己不带参数</p>
+<p>test1()<br>test2()</p>
+<p>解析： set_level 函数的目的是保存一个参数，level_num,供下面的装饰器来使用，最后一行return set_func 这行返回了set_func 的引用，1.调用完set_level函数以后，2.开始调用set_func函数，也就是调用装饰器，调用装饰器的过程不用多赘述和平时调用是一样的。</p>
+<h4 id="路由："><a href="#路由：" class="headerlink" title="路由："></a>路由：</h4><ul>
+<li>根据URL不一样，寻找的路径不一样。</li>
+</ul>
+
           
         
       
