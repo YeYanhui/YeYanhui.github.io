@@ -232,6 +232,194 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/01/前端性能优化策略/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AlanYe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="If you have a dream, Please go head!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/01/前端性能优化策略/" itemprop="url">前端性能优化策略</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-01T22:19:06+08:00">
+                2019-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1.前段性能优化<br>前段代码是下载到本地再开始运行。<br>2.后端代码写好以后再服务器运行。</p>
+<h2 id="代码部署"><a href="#代码部署" class="headerlink" title="代码部署"></a>代码部署</h2><ol>
+<li>代码的压缩与合并</li>
+<li>图片,js,css等静态资源使用和主站不同域名地址存储，从而使得在传输资源时不会带上不必要的cookie信息</li>
+<li>使用内容分发网络CDN </li>
+</ol>
+<ul>
+<li>解释：数据从服务中心发送过来可能很慢，例如腾讯总部服务器在深圳，如果在其他地方也用深圳的服务器运行速度可能会很慢，如果我在北京，腾讯在北京设置一个服务器，我用CDN服务器分发，数据从北京服务器来进行传输，速度则会有明显的提高。</li>
+</ul>
+<ol>
+<li>为文件设置Last——Modified、Expires(过期时间)和Etag（时间戳）.</li>
+</ol>
+<ul>
+<li>解释：1.如果当前时间和最后一次修改时间文件没有变化，则直接读取缓存，则实现了减少带宽，提高运行速度。2. 如果过期时间还没有到，我们则直接读取缓存，这样提高了网页运行效率，不用再重新下载和传输文件。从而实现不读服务器的数据。</li>
+</ul>
+<ol>
+<li>使用GZIP压缩传送</li>
+<li>权衡DNS 查找次数(使用不同域名会增加DNS查找)</li>
+</ol>
+<ul>
+<li>解释：域名解析为DNS，域名会先去访问一个DNS服务器，再把域名解析为一个IP地址服务器。然后再去访问IP地址服务器。同理：域名越多则会造成IP访问越多。2-3个就好，不要太多。否则会减慢运行速度。</li>
+</ul>
+<ol>
+<li>避免不必要的重定向(加”/“)</li>
+</ol>
+<ul>
+<li>解析：加/ 就不用重定向了。</li>
+</ul>
+<h2 id="二-编码"><a href="#二-编码" class="headerlink" title="二. 编码"></a>二. 编码</h2><h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><ul>
+<li><ol>
+<li>使用结构清晰，简单，语义化标签。</li>
+<li>避免空的src和href.<br>解析：避免寻找浪费</li>
+<li>不要在HTML中缩放图片。<br>解析：HTML中不缩放图片，则避免了渲染，显示更好看。</li>
+</ol>
+</li>
+</ul>
+<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><ul>
+<li><ol>
+<li>精简CSS选择器<br>解析：最多四层，最好一层，不冲突。越短越好。</li>
+<li>把CSS放到顶部<br>解析：把CSS放到顶部，浏览器先读完CSS，再来渲染页面。一步到位。<br>把CSS放到尾部，先渲染页面，再读CSS，再回来渲染页面。两步，多了一步。</li>
+<li>避免@import方式引入样式。</li>
+<li>css中使用base64图片数据取代图片文件，减少请求数，在线base64网站:<a href="http://tool.css-js.com/base64.html" target="_blank" rel="noopener">http://tool.css-js.com/base64.html</a></li>
+<li>使用CSS动画来取代Javascript动画。</li>
+<li>使用字体图片</li>
+<li>使用CSS sprite(雪碧图)</li>
+<li>使用SVG图形。</li>
+<li>避免使用css表达式。</li>
+<li>避免使用css滤镜。</li>
+</ol>
+</li>
+</ul>
+<h3 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h3><ul>
+<li><ol>
+<li>减少引用库的个数</li>
+<li>使用requirejs或者seajs异步加载js<br>解析： requirejs 和 seajs 是模块开发。类似于封闭函数。</li>
+<li>JS放到页面底部引入。<br>解析： 加入新功能时，放在底部比较好。</li>
+<li>避免全局查找。</li>
+<li>使用原生方法。<br>解析： 原生方法更快，但是容易不兼容。开发用jQuery。</li>
+<li>用switch语句代替复杂的if else语句</li>
+<li>减少语句数，比如说多个变量声明可以写成一句。</li>
+<li>私用字面量表达式来初始化数组或者对象。</li>
+<li>使用innerHTML来取代复杂的元素注入。<br>解析： 尽量用字符串方式插入</li>
+<li>使用事件代理（事件委托）</li>
+<li>避免多次访问dom选择集。</li>
+<li>高频触发事件设置使用函数节流。</li>
+<li>使用web Storage 缓存数据。</li>
+</ol>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/25/Python-写的-mini-web-服务器/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1902,7 +2090,7 @@ drop table xxxxx;
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
